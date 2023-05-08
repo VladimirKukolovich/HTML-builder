@@ -25,24 +25,15 @@ function buildPage() {
 
         console.log(data);
       });
-      fs.readdir(components, {withFileTypes: true}, (err, files)=> {
+      fs.readdir(components, {withFileTypes: true}, (err)=> {
         // console.log(files);
 
         if(err) throw err;
         const recStreamHtml = fs.createWriteStream(path.resolve(__dirname, 'project-dist', 'index.html'));
         let stream1 = fs.createReadStream(path.join(__dirname, 'template.html'));
         // console.log(recStreamHtml);
-        console.log(!files);
 
         stream1.pipe(recStreamHtml);
-        // files.forEach((i) => {
-        //   console.log(i);
-        //   if(i.isFile() && path.extname(i.name) === '.html' ){
-        //     let streamRead = fs.createReadStream(path.join(components, i.name));
-        //     console.log(streamRead);
-        //     streamRead.pipe(recStreamHtml);
-        //   }
-        // });
       });
  
 
