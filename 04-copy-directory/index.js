@@ -23,13 +23,15 @@ const addFiles = () => {
   fs.readdir(oldDirPath, { withFileTypes: true }, (err, files) => {
     if (err) throw err;
     files.map((element) => {
-      fs.copyFile(
-        oldDirPath + '\\' + element.name,
-        newDirPath + '\\' + element.name,
-        (err) => {
-          if (err) throw err;
-        }
-      );
+      if (element.isFile()) {
+        fs.copyFile(
+          oldDirPath + '\\' + element.name,
+          newDirPath + '\\' + element.name,
+          (err) => {
+            if (err) throw err;
+          }
+        );
+      }
     });
   });
 };
